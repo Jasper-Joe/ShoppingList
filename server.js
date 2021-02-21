@@ -8,19 +8,10 @@ const app = express();
 
 app.use(bodyParser.json());
 
+// URI from Atlas
 const db = require("./config/keys").mongoURI;
 
-//const MongoClient = require("mongodb").MongoClient;
-// const client = new MongoClient(uri, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-// client.connect((err) => {
-//   const collection = client.db("test").collection("devices");
-//   // perform actions on the collection object
-//   client.close();
-// });
-
+// use mongoose to connect the app to Atlas
 mongoose.connect(db, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -28,6 +19,7 @@ mongoose.connect(db, {
   useCreateIndex: true,
 });
 
+// map the address to items file
 app.use("/api/items", items);
 
 const port = process.env.PORT || 5000;
