@@ -18,31 +18,16 @@ class ShoppingList extends Component {
     const { items } = this.props.item;
     return (
       <Container>
-        <Button
-          color="dark"
-          style={{ marginBottom: "2rem" }}
-          onClick={() => {
-            const name = prompt("Enter Item");
-            if (name) {
-              this.setState((state) => ({
-                items: [...state.items, { id: uuidv4(), name }],
-              }));
-            }
-          }}
-        >
-          Add Item
-        </Button>
-
         <ListGroup>
           <TransitionGroup className="shopping-list">
             {items.map((item) => (
-              <CSSTransition key={item.id} timeout={500} classNames="fade">
+              <CSSTransition key={item._id} timeout={500} classNames="fade">
                 <ListGroupItem>
                   <Button
                     classNam="remove-btn"
                     color="danger"
                     size="sm"
-                    onClick={this.onDeleteClick.bind(this, item.id)}
+                    onClick={this.onDeleteClick.bind(this, item._id)}
                   >
                     &times;
                   </Button>
